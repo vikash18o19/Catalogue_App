@@ -1,3 +1,4 @@
+import 'package:carousel_app/widgets/drawer.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -7,8 +8,9 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.blue[600], title: const Text('Carousel')),
-      drawer: Drawer(),
+          backgroundColor: Color.fromARGB(255, 114, 39, 171),
+          title: const Text('App')),
+      drawer: MyDrawer(),
     );
   }
 }
