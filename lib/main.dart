@@ -1,6 +1,7 @@
 import 'package:carousel_app/pages/home_page.dart';
 import 'package:carousel_app/pages/login_page.dart';
 import 'package:carousel_app/utils/routes.dart';
+import 'package:carousel_app/widgets/themes.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,9 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        fontFamily: GoogleFonts.lato().fontFamily,
-      ),
+      theme: MyTheme.lightTheme(context),
       debugShowCheckedModeBanner: false,
       initialRoute: MyRoutes.homeRoute,
       routes: {
