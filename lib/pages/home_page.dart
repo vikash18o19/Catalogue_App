@@ -21,15 +21,14 @@ class _HomePageState extends State<HomePage> {
   }
 
   loadData() async {
+    await Future.delayed(Duration(seconds: 10));
+
     final catalogJson = await rootBundle.loadString(
         "assets/files/catalog.json"); // it returns future, ie. it can take time to extract. thus use await.
     // But we cannot use this JSON we need to decode it.
-    //print(catalogJson);
     final decodedData = jsonDecode(
         catalogJson); // here we are converting string data to JSON map. similarly we can use encode.
-    //print(decodedData);
     var productsData = decodedData["products"];
-    //print(productsData);
     CatalogModel.items = List.from(productsData)
         .map<Item>((item) => Item.fromMap(item))
         .toList();
@@ -40,15 +39,19 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('App')),
-      body: ListView.builder(
-        itemCount: CatalogModel.items.length,
-        itemBuilder: (context, index) {
-          return ItemWidget(
-            item: CatalogModel.items[index],
-          );
-        },
-      ), // builder gives recycler view. ie the items currently visible will only be rendered not others if want to then scroll.
-      drawer: MyDrawer(),
+      body: (CatalogModel.items != null) && (CatalogModel.items.isNotEmpty)
+          ? ListView.builder(
+              itemCount: CatalogModel.items.length,
+              itemBuilder: (context, index) {
+                return ItemWidget(
+                  item: CatalogModel.items[index],
+                );
+              },
+            )
+          : const Center(
+              child: CircularProgressIndicator(),
+            ), // builder gives recycler view. ie the items currently visible will only be rendered not others if want to then scroll.
+      drawer: const MyDrawer(),
     );
   }
 }
