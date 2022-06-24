@@ -8,6 +8,6 @@ class MyTheme {
             elevation: 0.0,
             iconTheme: IconThemeData(color: Colors.black),
             titleTextStyle: TextStyle(color: Colors.black, fontSize: 20)),
-        fontFamily: GoogleFonts.lato().fontFamily,
+        fontFamily: GoogleFonts.poppins().fontFamily,
       );
 }
