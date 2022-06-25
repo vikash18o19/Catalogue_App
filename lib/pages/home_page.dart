@@ -1,7 +1,9 @@
 import 'package:carousel_app/models/catalog.dart';
 import 'package:carousel_app/widgets/drawer.dart';
 import 'package:carousel_app/widgets/item_widget.dart';
+import 'package:carousel_app/widgets/themes.dart';
 import 'package:flutter/material.dart';
+//import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'dart:convert';
 import "package:velocity_x/velocity_x.dart";
@@ -39,23 +41,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: MyTheme.creamColor,
         body: SafeArea(
-      child: Container(
-        padding: Vx.m32,
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            CatalogHeader(),
-            if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
-              CatalogList().expand()
-            else
-              const Center(
-                child: CircularProgressIndicator(),
-              )
-          ],
-        ),
-      ),
-    ));
+          child: Container(
+            padding: Vx.m32,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                CatalogHeader(),
+                if (CatalogModel.items != null && CatalogModel.items.isNotEmpty)
+                  CatalogList().expand()
+                else
+                  const Center(
+                    child: CircularProgressIndicator(),
+                  )
+              ],
+            ),
+          ),
+        ));
   }
 }
 
@@ -69,6 +72,13 @@ class CatalogHeader extends StatelessWidget {
       children: [
         "Catalog App".text.xl5.bold.make(),
         "Trending Products".text.xl2.make(),
+        Container(
+          height: 20,
+        ),
+        const Divider(
+          color: Colors.black,
+          height: 10,
+        )
       ],
     );
   }
@@ -100,7 +110,52 @@ class CatalogItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return VxBox(
         child: Row(
-      children: [Image.network(catalog.image)],
-    )).white.square(100).make();
+      children: [
+        CatalogImage(image: catalog.image),
+        Expanded(
+            child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            catalog.name.text.lg.bold.make(),
+            catalog.desc.text.textStyle(context.captionStyle).make(),
+            10.heightBox,
+            ButtonBar(
+              buttonPadding: EdgeInsets.zero,
+              alignment: MainAxisAlignment.spaceBetween,
+              children: [
+                "\$${catalog.price}".text.bold.xl.make(),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.all(
+                          const Color.fromARGB(255, 40, 39, 42)),
+                      shape: MaterialStateProperty.all(StadiumBorder())),
+                  child: "Buy".text.make(),
+                ).pOnly(right: 20.0),
+              ],
+            )
+          ],
+        ))
+      ],
+    )).white.rounded.square(150).make().py16();
+  }
+}
+
+class CatalogImage extends StatelessWidget {
+  final String image;
+
+  const CatalogImage({super.key, required this.image});
+
+  @override
+  Widget build(BuildContext context) {
+    return Image.network(image)
+        .box
+        .rounded
+        .p16
+        .color(Colors.white)
+        .make()
+        .p16()
+        .w32(context);
   }
 }

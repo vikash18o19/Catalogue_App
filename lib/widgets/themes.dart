@@ -10,4 +10,5 @@ class MyTheme {
             titleTextStyle: TextStyle(color: Colors.black, fontSize: 20)),
         fontFamily: GoogleFonts.poppins().fontFamily,
       );
+  static Color creamColor = Color(0xfff5f5f5);
 }
