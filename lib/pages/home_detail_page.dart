@@ -11,10 +11,21 @@ class HomeDetailsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(),
       body: SafeArea(
         child: Column(
           children: [
-            Image.network(catalog.image),
+            Image.network(catalog.image).h32(context),
+            Expanded(
+              child: VxArc(
+                arcType: VxArcType.CONVEY,
+                height: 30.0,
+                edge: VxEdge.TOP,
+                child: Container(
+                  color: Colors.white,
+                ),
+              ),
+            ),
           ],
         ).centered(),
       ),
