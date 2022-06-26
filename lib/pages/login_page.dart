@@ -1,6 +1,5 @@
 import 'package:carousel_app/utils/routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
