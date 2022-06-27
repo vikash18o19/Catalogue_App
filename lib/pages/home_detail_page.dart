@@ -12,7 +12,24 @@ class HomeDetailsPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(),
+      backgroundColor: Colors.white,
+      bottomNavigationBar: ButtonBar(
+        buttonPadding: EdgeInsets.zero,
+        alignment: MainAxisAlignment.spaceBetween,
+        children: [
+          "\$${catalog.price}".text.bold.red800.xl4.make(),
+          ElevatedButton(
+            onPressed: () {},
+            style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(
+                    const Color.fromARGB(255, 40, 39, 42)),
+                shape: MaterialStateProperty.all(StadiumBorder())),
+            child: "Buy".text.make(),
+          ).wh(100, 50),
+        ],
+      ).p32().backgroundColor(Color.fromARGB(255, 226, 222, 246)),
       body: SafeArea(
+        bottom: false,
         child: Column(
           children: [
             Image.network(catalog.image).h32(context),
@@ -22,7 +39,17 @@ class HomeDetailsPage extends StatelessWidget {
                 height: 30.0,
                 edge: VxEdge.TOP,
                 child: Container(
-                  color: Colors.white,
+                  width: context.screenWidth,
+                  color: Color.fromARGB(255, 226, 222, 246),
+                  child: Column(
+                    children: [
+                      catalog.name.text.xl3.bold.make(),
+                      catalog.desc.text.xl
+                          .textStyle(context.captionStyle)
+                          .make(),
+                      10.heightBox,
+                    ],
+                  ).py64(),
                 ),
               ),
             ),
