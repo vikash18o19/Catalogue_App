@@ -24,8 +24,8 @@ class HomeDetailsPage extends StatelessWidget {
                 backgroundColor: MaterialStateProperty.all(
                     const Color.fromARGB(255, 40, 39, 42)),
                 shape: MaterialStateProperty.all(StadiumBorder())),
-            child: "Buy".text.make(),
-          ).wh(100, 50),
+            child: "Add to Cart".text.make(),
+          ).wh(140, 50),
         ],
       ).p32().backgroundColor(Color.fromARGB(255, 226, 222, 246)),
       body: SafeArea(
@@ -48,6 +48,10 @@ class HomeDetailsPage extends StatelessWidget {
                           .textStyle(context.captionStyle)
                           .make(),
                       10.heightBox,
+                      "Clita magna sed sed at et at dolor kasd, amet vero takimata et takimata, at diam lorem voluptua justo dolore ut ea rebum, sit sit ut sed kasd accusam nonumy gubergren ipsum. Ut at vero vero dolor, sadipscing amet takimata invidunt est ut, sit ea amet et takimata stet sea.."
+                          .text
+                          .make()
+                          .p16(),
                     ],
                   ).py64(),
                 ),
